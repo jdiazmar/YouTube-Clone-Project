@@ -15,12 +15,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Car',
+            name='Comment',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('make', models.CharField(max_length=30)),
-                ('model', models.CharField(max_length=100)),
-                ('year', models.IntegerField()),
+                ('video_id', models.CharField(max_length=255)),
+                ('text', models.CharField(max_length=255)),
+                ('likes', models.IntegerField()),
+                ('dislikes', models.IntegerField()),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
