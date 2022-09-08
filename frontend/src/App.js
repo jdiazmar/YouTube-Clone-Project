@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
 // Pages Imports
-import HomePage from "./pages/HomePage/HomePage";
+import YouTubePage from "./pages/YouTubePage/YouTubePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
@@ -23,7 +23,7 @@ function App() {
           path="/"
           element={
             <PrivateRoute>
-              <HomePage />
+              <YouTubePage />
             </PrivateRoute>
           }
         />
