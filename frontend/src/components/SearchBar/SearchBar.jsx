@@ -16,7 +16,7 @@ const handleSubmit = (event) => {
         <div>
         <form  onSubmit={handleSubmit}>
             <label >Search:</label>
-            <input type='text' placeholder="Search for a video..." className='search-input' value={searchVideo} onChange ={(event) => setSearchVideo(event.target.value)} />
+            <input type='text' placeholder="Search"  value={searchVideo} onChange ={(event) => setSearchVideo(event.target.value)} />
             <button>Search</button>
         </form>
     </div>

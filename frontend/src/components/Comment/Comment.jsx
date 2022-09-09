@@ -19,11 +19,11 @@ let reply = props.text
         <div>
             <form>
                     <div>
-                        <label htmlFor="Reply" className='reply-text'>Reply:{" "}</label>
-                        <input onChange={(e) => setReplyText(e.target.value)} type= "text" id = 'Reply' className='reply-input'/>
+                        <label>Reply:{' '}</label>
+                        <input onChange={(e) => setReplyText(e.target.value)} type='text' id ='Reply' className='reply-input'/>
                     </div>
                     <div>
-                        <button type = 'button' onClick={() => {handlesubmit()}} className='reply-post'>Post</button>
+                        <button type ='button' onClick={() => {handlesubmit()}}>Post</button>
                         
                     </div>
                 </form>
