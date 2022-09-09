@@ -7,6 +7,7 @@ import { KEY } from '../../localKey';
 // Components Imports
 import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import Comment from '../../components/Comment/Comment';
 
 
 
@@ -31,6 +32,7 @@ const YouTubePage = () => {
         <div>
             <SearchBar getSearchResults={getSearchResults}/>
             <VideoPlayer videoId={videoId}/>
+            <Comment />
         </div>
 
      );
