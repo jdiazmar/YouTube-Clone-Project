@@ -14,7 +14,17 @@ const handleSubmit = (event) => {
 
 
     return ( 
- 
+        <div>
+            <form onSubmit={handleSubmit}>
+            <div>
+                <label>Comment:{" "}</label>
+                <input type= "text" id = 'Comment' value={comment} onChange ={(event) => setComment(event.target.value)} />
+            </div>
+            <div>
+                <button type='submit'>Post</button>
+            </div>
+            </form>
+        </div>
      );
 }
  
