@@ -8,6 +8,7 @@ import { KEY } from '../../localKey';
 import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import CommentForm from '../../components/CommentForm/CommentForm';
+import CommentList from '../../components/CommentList/CommentList';
 
 
 
@@ -17,6 +18,7 @@ const YouTubePage = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [videoId, setVideoId] = useState('');
     const [allComments, setAllComments] = useState([]);
+    const [user, token] = useAuth();
 
     useEffect(() => {
         getSearchResults();
@@ -34,16 +36,31 @@ const YouTubePage = () => {
     }
 
     async function getAllComments(){
-        let response = await axios.get(`http://127.0.0.1:8000/comments/${videoId}/`);
+        let response = await axios.get(`http://127.0.0.1:8000/api/comments/${videoId}/`);
         setAllComments(response.data);
         console.log(response.data);
+    }
+
+    async function postComment(text){
+        let newComment = {
+            video_id: videoId,
+            text: text,
+        }
+        let response = await axios.post('http://127.0.0.1:8000/api/comments', newComment, {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        });
+        setAllComments(response.data)
+        getAllComments();
     }
 
     return ( 
         <div>
             <SearchBar getSearchResults={getSearchResults}/>
             <VideoPlayer videoId={videoId}/>
-            <CommentForm />
+            <CommentForm postComment={postComment} />
+            <CommentList allComments={allComments} />
         </div>
 
      );
