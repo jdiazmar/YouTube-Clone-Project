@@ -22,6 +22,8 @@ const YouTubePage = () => {
 
     useEffect(() => {
         getSearchResults();
+        getAllComments();
+        postComment();
     }, [])
 
     useEffect(() =>{
@@ -57,10 +59,13 @@ const YouTubePage = () => {
 
     return ( 
         <div>
-            <SearchBar getSearchResults={getSearchResults}/>
-            <VideoPlayer videoId={videoId}/>
-            <CommentForm postComment={postComment} />
-            <CommentList allComments={allComments} />
+            <div> <SearchBar getSearchResults={getSearchResults}/> </div>
+            <div>
+                <div> <VideoPlayer videoId={videoId}/> </div>
+                <div> <CommentForm postComment={postComment} /> </div>
+                <div> <CommentList allComments={allComments} /> </div>
+            </div>
+ 
         </div>
 
      );
