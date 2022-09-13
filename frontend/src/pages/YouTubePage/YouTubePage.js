@@ -13,6 +13,7 @@ import CommentList from '../../components/CommentList/CommentList';
 
 
 
+
 const YouTubePage = () => {
 
     const [searchResults, setSearchResults] = useState([]);
@@ -22,6 +23,7 @@ const YouTubePage = () => {
     const [comment, setComment] = useState('');
     const [allComments, setAllComments] = useState([]);
     const [user, token] = useAuth();
+ 
 
     useEffect(() => {
         getSearchResults();
@@ -33,6 +35,7 @@ const YouTubePage = () => {
         getAllComments();
     }, [videoId])
 
+
     async function getSearchResults(searchTerm = 'nba 2k23'){
         let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${KEY}`);
         setVideoId(response.data.items[0].id.videoId);
@@ -42,6 +45,7 @@ const YouTubePage = () => {
         setSearchResults(response.data.items);
     }
 
+    
     async function getAllComments(){
         let response = await axios.get(`http://127.0.0.1:8000/api/comments/${videoId}/`);
         setAllComments(response.data);
@@ -61,6 +65,7 @@ const YouTubePage = () => {
         setAllComments(response.data)
         getAllComments();
     }
+
 
     return ( 
         <div>
