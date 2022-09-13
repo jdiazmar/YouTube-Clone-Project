@@ -26,12 +26,10 @@ const VideoPage = (props) => {
         setSearchResults(response.data.items);
         console.log(response.data.items);
     }
-    }
-    
 
     return ( 
         <div>
-            <div> <Link to='/register'> <b>Register Here!</b></Link> </div>
+            <div> <Link to='/register'> <button>Register Here!</button></Link> </div>
             <div> <SearchBar getSearchResults={getSearchResults} /> </div>
             <div>
                 <div>
@@ -43,6 +41,11 @@ const VideoPage = (props) => {
             </div>
         </div>
      );
+
+}
+    
+
+
 
  
 export default VideoPage;

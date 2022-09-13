@@ -17,6 +17,9 @@ const YouTubePage = () => {
 
     const [searchResults, setSearchResults] = useState([]);
     const [videoId, setVideoId] = useState('');
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [comment, setComment] = useState('');
     const [allComments, setAllComments] = useState([]);
     const [user, token] = useAuth();
 
@@ -34,6 +37,8 @@ const YouTubePage = () => {
         let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${KEY}`);
         setVideoId(response.data.items[0].id.videoId);
         console.log(response.data.items[0].id.videoId);
+        setTitle(response.data.items[0].snippet.title);
+        setDescription(response.data.items[0].snippet.description);
         setSearchResults(response.data.items);
     }
 
@@ -61,9 +66,9 @@ const YouTubePage = () => {
         <div>
             <div> <SearchBar getSearchResults={getSearchResults}/> </div>
             <div>
-                <div> <VideoPlayer videoId={videoId}/> </div>
-                <div> <CommentForm postComment={postComment} /> </div>
-                <div> <CommentList allComments={allComments} /> </div>
+                <div> <VideoPlayer videoId={videoId} title={title} description={description}/> </div>
+                <div> <CommentForm postComment={postComment}/> </div>
+                <div> <CommentList allComments={allComments}/> </div>
             </div>
  
         </div>
