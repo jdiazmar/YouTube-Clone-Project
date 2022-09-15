@@ -21,7 +21,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route
-          path="/"
+          path="/videos"
           element={
             <PrivateRoute>
               <YouTubePage />
@@ -30,7 +30,7 @@ function App() {
         />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path='/videos' element={<VideoPage />} />
+        <Route path='/' element={<VideoPage />} />
       </Routes>
       <Footer />
     </div>

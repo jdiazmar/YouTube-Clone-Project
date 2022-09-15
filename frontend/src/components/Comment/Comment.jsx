@@ -3,27 +3,32 @@ import React, { useState } from 'react';
 
 const Comment = (props) => {
 
-const [replyText, setReplyText] = useState('');
+const [user, setUser] = useState('');
+const [text, setText] = useState('');
 
-function handleSubmit(){
-    let newReply = {
-        'comment_id': props.id,
-        'text': replyText
-    }
-    props.postReply(newReply);
+function handleSubmit(event){
+    event.preventDefault();
+    let newComment = {
+        user: user,
+        comment: text
+    };
+    console.log(newComment);
+    props.postReply(newComment);
 }
-
-let reply = props.text 
 
     return ( 
         <div>
             <form>
                     <div>
-                        <label>Reply:{reply}</label>
-                        <input onChange={(e) => setReplyText(e.target.value)} type='text' id ='reply'/>
+                        <label>User:</label>
+                        <input type='text' value={user} onChange={(event) => setUser(event.target.value)}/>
                     </div>
                     <div>
-                        <button type ='button' onClick={() => {handleSubmit()}}>Post</button>
+                        <label>Comment:</label>
+                        <input type='post' value={text} onChange={(event) => setText(event.target.value)} />
+                    </div>
+                    <div>
+                        <button type ='submit' onClick={() => {handleSubmit()}}>Post</button>
                         
                     </div>
                 </form>

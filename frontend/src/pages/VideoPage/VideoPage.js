@@ -7,8 +7,9 @@ import useAuth from '../../hooks/useAuth';
 // Component Imports
 import SearchBar from '../../components/SearchBar/SearchBar';
 import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
+import Comment from '../../components/Comment/Comment';
 import CommentForm from '../../components/CommentForm/CommentForm';
-import CommentList from '../../components/CommentList/CommentList';
+
 
 const VideoPage = (props) => {
 
@@ -16,8 +17,8 @@ const VideoPage = (props) => {
     const [videoId, setVideoId] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [allComments, setAllComments] = useState([]);
     const [user, token] = useAuth();
+    const [comments, setComments] = useState([{user: 'j20diaz', comment: 'Wow!' }])
 
 
     useEffect(() => {
@@ -38,9 +39,24 @@ const VideoPage = (props) => {
 
     async function getAllComments(){
         let response = await axios.get(`http://127.0.0.1:8000/api/comments/${videoId}/`);
-        setAllComments(response.data);
+        getAllComments(response.data);
         console.log(response.data);
     }
+
+    // async function addNewComment(text){
+    //     let newComment = {
+    //         video_id: videoId,
+    //         text: text,
+    //     }
+    // }
+    // let response =  axios.post('http://127.0.0.1:8000/api/comments/', {
+    //         headers: {
+    //             Authorization: 'Bearer ' + token
+    //         }
+    //     });
+    //     setComments(response.data);
+    //     getAllComments();
+
 
 
 
@@ -53,8 +69,12 @@ const VideoPage = (props) => {
             <div>
                 <div>
                     <VideoPlayer videoId={videoId} title={title} description={description}  />
-                    <div> <CommentForm /> </div>
-                    <div> <CommentList allComments={allComments}/> </div>
+                </div>
+                <div>
+                    <Comment  />
+                </div>
+                <div>
+                    <CommentForm userComment={comments} />
                 </div>
             </div>
             <div>

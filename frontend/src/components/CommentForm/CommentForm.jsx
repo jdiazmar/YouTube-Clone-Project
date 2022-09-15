@@ -3,28 +3,29 @@ import React, { useState } from 'react';
 
 const CommentForm = (props) => {
 
-const [comment, setComment] = useState('');
-
-const handleSubmit = (event) => {
-    event.preventDefault();
-    props.postComment(comment);
-    setComment('');
-}
-
 
 
     return ( 
-        <div>
-            <form onSubmit={handleSubmit}>
-            <div>
-                <label>Comment:{" "}</label>
-                <input type= "text" id = 'Comment' value={comment} onChange ={(event) => setComment(event.target.value)} />
-            </div>
-            <div>
-                <button type='submit'>Post</button>
-            </div>
-            </form>
-        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {props.userComment.map((entry) => {
+                    return (
+                        <div>
+                            <tr>
+                                <td>{entry.user}</td>
+                                <td>{entry.comment}</td>
+                            </tr>
+                        </div>
+                    )
+                })}
+            </tbody>
+        </table>
      );
 }
  
