@@ -8,7 +8,7 @@ import useAuth from '../../hooks/useAuth';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 import Comment from '../../components/Comment/Comment';
-import CommentForm from '../../components/CommentForm/CommentForm';
+// import CommentForm from '../../components/CommentForm/CommentForm';
 
 
 const VideoPage = (props) => {
@@ -18,7 +18,7 @@ const VideoPage = (props) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [user, token] = useAuth();
-    const [comments, setComments] = useState([{user: 'j20diaz', comment: 'Wow!' }])
+    // const [comments, setComments] = useState([{user: 'j20diaz', comment: 'Wow!' }])
 
 
     useEffect(() => {
@@ -43,19 +43,6 @@ const VideoPage = (props) => {
         console.log(response.data);
     }
 
-    // async function addNewComment(text){
-    //     let newComment = {
-    //         video_id: videoId,
-    //         text: text,
-    //     }
-    // }
-    // let response =  axios.post('http://127.0.0.1:8000/api/comments/', {
-    //         headers: {
-    //             Authorization: 'Bearer ' + token
-    //         }
-    //     });
-    //     setComments(response.data);
-    //     getAllComments();
 
 
 
@@ -71,10 +58,7 @@ const VideoPage = (props) => {
                     <VideoPlayer videoId={videoId} title={title} description={description}  />
                 </div>
                 <div>
-                    <Comment  />
-                </div>
-                <div>
-                    <CommentForm userComment={comments} />
+                    <Comment />
                 </div>
             </div>
             <div>

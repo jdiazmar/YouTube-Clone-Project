@@ -7,8 +7,11 @@ import { KEY } from '../../localKey';
 // Components Imports
 import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import CommentForm from '../../components/CommentForm/CommentForm';
-import CommentList from '../../components/CommentList/CommentList';
+import Comment from '../../components/Comment/Comment';
+// import CommentForm from '../../components/CommentForm/CommentForm';
+// import CommentList from '../../components/CommentList/CommentList';
+
+
 
 
 
@@ -69,13 +72,11 @@ const YouTubePage = () => {
 
     return ( 
         <div>
+            <h1>Welcome {user.user}!</h1>
             <div> <SearchBar getSearchResults={getSearchResults}/> </div>
             <div>
                 <div> <VideoPlayer videoId={videoId} title={title} description={description}/> </div>
-                <div> <CommentForm postComment={postComment}/> </div>
-                <div> <CommentList allComments={allComments}/> </div>
             </div>
- 
         </div>
 
      );
