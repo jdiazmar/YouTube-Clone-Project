@@ -57,9 +57,6 @@ const VideoPage = (props) => {
                 <div>
                     <VideoPlayer videoId={videoId} title={title} description={description}  />
                 </div>
-                <div>
-                    <Comment />
-                </div>
             </div>
             <div>
                 <Link to='/login'><button>Login Here</button></Link>
