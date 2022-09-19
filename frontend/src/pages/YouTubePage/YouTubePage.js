@@ -31,7 +31,6 @@ const YouTubePage = () => {
     useEffect(() => {
         getSearchResults();
         getAllComments();
-        postComment();
     }, [])
 
     useEffect(() =>{
@@ -55,19 +54,7 @@ const YouTubePage = () => {
         console.log(response.data);
     }
 
-    async function postComment(text){
-        let newComment = {
-            video_id: videoId,
-            text: text,
-        }
-        let response = await axios.post('http://127.0.0.1:8000/api/comments', newComment, {
-            headers: {
-                Authorization: 'Bearer ' + token
-            }
-        });
-        setAllComments(response.data)
-        getAllComments();
-    }
+
 
 
     return ( 

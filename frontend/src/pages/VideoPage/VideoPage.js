@@ -8,7 +8,7 @@ import useAuth from '../../hooks/useAuth';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 import Comment from '../../components/Comment/Comment';
-// import CommentForm from '../../components/CommentForm/CommentForm';
+import CommentForm from '../../components/CommentForm/CommentForm';
 
 
 const VideoPage = (props) => {
@@ -17,6 +17,7 @@ const VideoPage = (props) => {
     const [videoId, setVideoId] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [comment, setComments] = useState('');
     const [user, token] = useAuth();
     // const [comments, setComments] = useState([{user: 'j20diaz', comment: 'Wow!' }])
 
@@ -29,23 +30,32 @@ const VideoPage = (props) => {
 
 
     async function getSearchResults(searchTerm='nba 2k23'){
-        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${KEY}`);
+        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${KEY}&part=snippet`);
+        console.log(response.data.items);
         setVideoId(response.data.items[0].id.videoId);
         setTitle(response.data.items[0].snippet.title);
         setDescription(response.data.items[0].snippet.description);
         setSearchResults(response.data.items);
-        console.log(response.data.items);
+        
     }
 
     async function getAllComments(){
-        let response = await axios.get(`http://127.0.0.1:8000/api/comments/${videoId}/`);
+        let response = await axios.get(`http://127.0.0.1:8000/api/comments/${videoId}`);
         getAllComments(response.data);
         console.log(response.data);
+        setComments(response.data);
     }
 
-
-
-
+    // async function addComment(newComment){
+    //     try {
+    //         const response = await axios.post('http://127.0.0.1:8000/api/comments', {
+    //             headers:
+    //             Authorization: 'Bearer ' + token
+    //         })
+    //     } catch (error) {
+            
+    //     }
+    // }
 
     return ( 
         <div>
@@ -56,6 +66,7 @@ const VideoPage = (props) => {
             <div>
                 <div>
                     <VideoPlayer videoId={videoId} title={title} description={description}  />
+                    <Comment />
                 </div>
             </div>
             <div>

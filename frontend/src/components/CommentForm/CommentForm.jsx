@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
+import useAuth from '../../hooks/useAuth';
 
 
 const CommentForm = (props) => {
 
-
+    const [user, token] = useAuth();
 
     return ( 
         <table>
             <thead>
                 <tr>
-                    <th></th>
-                    <th></th>
+                    <th>{user.user}</th>
+                    <th>Comment</th>
                 </tr>
             </thead>
             <tbody>

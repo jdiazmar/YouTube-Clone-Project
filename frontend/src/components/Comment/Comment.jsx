@@ -14,22 +14,16 @@ function handleSubmit(event){
         text: text
     };
     console.log(newComment);
-    props.postReply(newComment);
 }
 
     return ( 
         <div>
             <form onSubmit={handleSubmit} >
-                    <div>
-                        <label>{user.user}</label>
-                    <div>
-                        <label>Comment:</label>
-                        <input type='post' value={text} onChange={(event) => setText(event.target.value)} />
-                    </div>
-                    <div>
-                        <button type ='submit' onClick={() => {handleSubmit()}}>Post</button>
-                    </div>
-                    </div>
+                <div>
+                    <label>Comment:</label>
+                    <input type='post' value={text} onChange={(event) => setText(event.target.value)} />
+                    <button type ='submit' onClick={() => {handleSubmit()}}>Post</button>
+                </div>
             </form>
         </div>
      );
