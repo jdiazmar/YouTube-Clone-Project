@@ -8,7 +8,7 @@ import { KEY } from '../../localKey';
 import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Comment from '../../components/Comment/Comment';
-// import CommentForm from '../../components/CommentForm/CommentForm';
+import CommentForm from '../../components/CommentForm/CommentForm';
 // import CommentList from '../../components/CommentList/CommentList';
 
 
@@ -26,6 +26,7 @@ const YouTubePage = () => {
     const [comment, setComment] = useState('');
     const [allComments, setAllComments] = useState([]);
     const [user, token] = useAuth();
+    const [text, setText] = useState('Sick!');
  
 
     useEffect(() => {
@@ -35,7 +36,7 @@ const YouTubePage = () => {
 
     useEffect(() =>{
         getAllComments();
-    }, [videoId])
+    }, [videoId], [addComment])
 
 
     async function getSearchResults(searchTerm = 'nba 2k23'){
@@ -54,6 +55,13 @@ const YouTubePage = () => {
         console.log(response.data);
     }
 
+    async function addComment(newComment){
+        const response = await axios.post('http://127.0.0.1:8000/api/comments/', newComment);
+        setComment(response.data);
+        if(response.status === 201){
+            await getAllComments();
+        }
+    }
 
 
 
@@ -64,6 +72,7 @@ const YouTubePage = () => {
             <div>
                 <div> <VideoPlayer videoId={videoId} title={title} description={description}/> </div>
                 <div> <Comment /> </div>
+                <div> <CommentForm userComment={text} /> </div>
             </div>
         </div>
 

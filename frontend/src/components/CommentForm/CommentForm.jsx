@@ -20,7 +20,7 @@ const CommentForm = (props) => {
                         <div>
                             <tr>
                                 <td>{entry.user}</td>
-                                <td>{entry.comment}</td>
+                                <td>{entry.text}</td>
                             </tr>
                         </div>
                     )
