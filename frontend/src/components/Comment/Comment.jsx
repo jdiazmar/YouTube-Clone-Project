@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 
 
-const Comment = (props) => {
+const Comment = ({addNewCommentProp}) => {
 
 const [text, setText] = useState('');
 // const [videoId, setVideoId] = useState('');
@@ -14,6 +14,7 @@ function handleSubmit(event){
         text: text
     };
     console.log(newComment);
+    addNewCommentProp(newComment);
 }
 
     return ( 

@@ -26,7 +26,7 @@ const YouTubePage = () => {
     const [comment, setComment] = useState('');
     const [allComments, setAllComments] = useState([]);
     const [user, token] = useAuth();
-    const [text, setText] = useState('Sick!');
+    const [text, setText] = useState('');
  
 
     useEffect(() => {
@@ -40,7 +40,7 @@ const YouTubePage = () => {
 
 
     async function getSearchResults(searchTerm = 'nba 2k23'){
-        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${KEY}`);
+        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${KEY}&part=snippet`);
         setVideoId(response.data.items[0].id.videoId);
         console.log(response.data.items[0].id.videoId);
         setTitle(response.data.items[0].snippet.title);
@@ -71,7 +71,7 @@ const YouTubePage = () => {
             <div> <SearchBar getSearchResults={getSearchResults}/> </div>
             <div>
                 <div> <VideoPlayer videoId={videoId} title={title} description={description}/> </div>
-                <div> <Comment /> </div>
+                <div> <Comment addNewCommentProp={addComment} /> </div>
                 <div> <CommentForm userComment={text} /> </div>
             </div>
         </div>

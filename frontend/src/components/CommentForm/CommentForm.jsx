@@ -10,12 +10,11 @@ const CommentForm = (props) => {
         <table>
             <thead>
                 <tr>
-                    <th>{user.user}</th>
                     <th>Comment</th>
                 </tr>
             </thead>
             <tbody>
-                {props.userComment.map((entry) => {
+                {/* {props.userComment.map((entry) => {
                     return (
                         <div>
                             <tr>
@@ -24,7 +23,10 @@ const CommentForm = (props) => {
                             </tr>
                         </div>
                     )
-                })}
+                })} */}
+                <tr>
+                    <div> {user.user} {props.userComment} </div> 
+                </tr>
             </tbody>
         </table>
      );
