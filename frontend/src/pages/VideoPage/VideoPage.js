@@ -46,16 +46,6 @@ const VideoPage = (props) => {
         setComments(response.data);
     }
 
-    // async function addComment(newComment){
-    //     try {
-    //         const response = await axios.post('http://127.0.0.1:8000/api/comments', {
-    //             headers:
-    //             Authorization: 'Bearer ' + token
-    //         })
-    //     } catch (error) {
-            
-    //     }
-    // }
 
     return ( 
         <div>
@@ -66,7 +56,6 @@ const VideoPage = (props) => {
             <div>
                 <div>
                     <VideoPlayer videoId={videoId} title={title} description={description}  />
-                    <Comment />
                 </div>
             </div>
             <div>
