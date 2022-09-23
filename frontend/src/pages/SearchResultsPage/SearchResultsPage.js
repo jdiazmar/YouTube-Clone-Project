@@ -34,7 +34,21 @@ async function getSearchResults(searchTerm = 'nba 2k23'){
                 <h2>Search Page</h2>
             </div>
             <div> <SearchBar getSearchResults={getSearchResults} /> </div>
-            <div>    </div>
+            <div> <h3>Search Results</h3> </div>
+            <div>
+                <div>
+                    {searchResults.map((element, index) => {
+                        if(element.snippet){
+                            return (
+                                <div>
+                                    <img src={element.snippet.thumbnails.medium.url}></img>
+                                    <p><b>Title:</b> {element.snippet.title} </p>
+                                </div>
+                            )
+                        }
+                    })}
+                </div>
+            </div>
         </div>
      );
 }
