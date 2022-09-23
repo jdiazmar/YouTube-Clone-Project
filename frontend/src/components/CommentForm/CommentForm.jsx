@@ -1,34 +1,36 @@
 import React, { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
+import axios from 'axios';
+
 
 
 const CommentForm = (props) => {
 
+    const [comment, setComments] = useState('');
     const [user, token] = useAuth();
+    
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        let comments = {
+            comment: comment
+        }
+        console.log(comments)
+    }
 
+    async function postComment(){
+        let response = await axios.post('http://127.0.0.1:8000/api/comments/')
+        console.log(response);
+    }
     return ( 
-        <table>
-            <thead>
+        <form>
+            <label>Comments</label>
+            <div>
                 <tr>
-                    <th>Comment</th>
+                    {user.user_id}
+                    {postComment}
                 </tr>
-            </thead>
-            <tbody>
-                {/* {props.userComment.map((entry) => {
-                    return (
-                        <div>
-                            <tr>
-                                <td>{entry.user}</td>
-                                <td>{entry.text}</td>
-                            </tr>
-                        </div>
-                    )
-                })} */}
-                <tr>
-                    <div> {user.user} {props.userComment} </div> 
-                </tr>
-            </tbody>
-        </table>
+            </div>
+        </form>
      );
 }
  

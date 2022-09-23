@@ -36,7 +36,7 @@ const YouTubePage = () => {
 
     useEffect(() =>{
         getAllComments();
-    }, [videoId], [addComment])
+    }, [videoId])
 
 
     async function getSearchResults(searchTerm = 'nba 2k23'){
@@ -55,17 +55,7 @@ const YouTubePage = () => {
         console.log(response.data);
     }
 
-    async function addComment(newComment){
-        const response = await axios.post('http://127.0.0.1:8000/api/comments/', newComment, {
-            headers: {
-                Authorization: 'Bearer ' + token,
-            },
-        });
-        setComment(response.data);
-        if(response.status === 201){
-            await getAllComments();
-        }
-    }
+
 
 
 
@@ -75,7 +65,7 @@ const YouTubePage = () => {
             <div> <SearchBar getSearchResults={getSearchResults}/> </div>
             <div>
                 <div> <VideoPlayer videoId={videoId} title={title} description={description}/> </div>
-                <div> <Comment addNewCommentProp={addComment} /> </div>
+                <div> <Comment  /> </div>
                 <div> <CommentForm userComment={text} /> </div>
             </div>
         </div>
