@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 const SearchResultsPage = (props) => {
 
-    const [searchResults, setSearchResults] = useState([]);
+const [searchResults, setSearchResults] = useState([]);
 const [videoId, setVideoId] = useState('');
 const [description, setDescription] = useState('');
 const [title, setTitle] = useState('');
