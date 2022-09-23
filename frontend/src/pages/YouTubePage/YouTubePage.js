@@ -50,13 +50,17 @@ const YouTubePage = () => {
 
     
     async function getAllComments(){
-        let response = await axios.get(`http://127.0.0.1:8000/api/comments/${videoId}/`);
+        let response = await axios.get(`http://127.0.0.1:8000/api/comments/${videoId}`);
         setAllComments(response.data);
         console.log(response.data);
     }
 
     async function addComment(newComment){
-        const response = await axios.post('http://127.0.0.1:8000/api/comments/', newComment);
+        const response = await axios.post('http://127.0.0.1:8000/api/comments/', newComment, {
+            headers: {
+                Authorization: 'Bearer ' + token,
+            },
+        });
         setComment(response.data);
         if(response.status === 201){
             await getAllComments();

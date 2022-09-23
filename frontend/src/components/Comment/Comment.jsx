@@ -5,12 +5,15 @@ import useAuth from '../../hooks/useAuth';
 const Comment = ({addNewCommentProp}) => {
 
 const [text, setText] = useState('');
+const [likes, setLikes] = useState(0);
+const [dislikes, setDislikes] = useState(0);
 // const [videoId, setVideoId] = useState('');
 const [user, token] = useAuth();
 
 function handleSubmit(event){
     event.preventDefault();
     let newComment = {
+        user: user.user_id,
         text: text
     };
     console.log(newComment);
