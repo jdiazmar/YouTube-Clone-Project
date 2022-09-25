@@ -6,31 +6,27 @@ import axios from 'axios';
 
 const CommentForm = (props) => {
 
-    const [comment, setComments] = useState('');
-    const [user, token] = useAuth();
+    const [comment, setComment] = useState('');
+    
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        let comments = {
-            comment: comment
-        }
-        console.log(comments)
+        props.postComment(comment);
+        setComment('');
     }
 
-    async function postComment(){
-        let response = await axios.post('http://127.0.0.1:8000/api/comments/')
-        console.log(response);
-    }
     return ( 
-        <form>
-            <label>Comments</label>
-            <div>
-                <tr>
-                    {user.user_id}
-                    {postComment}
-                </tr>
-            </div>
-        </form>
+        <div>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Comment:{''}</label>
+                    <input type='text' id='Comment' value={comment} onChange={(event) => setComment(event.target.value)}/>
+                </div>
+                <div>
+                    <button type='submit' >Post</button>
+                </div>
+            </form>
+        </div>
      );
 }
  
