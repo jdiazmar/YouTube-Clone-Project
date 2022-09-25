@@ -9,6 +9,7 @@ import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import CommentForm from '../../components/CommentForm/CommentForm';
 import CommentList from '../../components/CommentList/CommentList';
+import RelatedVideos from '../../components/RelatedVideos/RelatedVideos';
 
 
 
@@ -26,6 +27,7 @@ const YouTubePage = () => {
     const [allComments, setAllComments] = useState([]);
     const [user, token] = useAuth();
     const [text, setText] = useState('');
+    const [relatedVideos, setRelatedVideos] = useState([]);
  
 
     useEffect(() => {
@@ -36,6 +38,7 @@ const YouTubePage = () => {
 
     useEffect(() =>{
         getAllComments();
+        getRelatedVideos();
     }, [videoId])
 
 
@@ -48,6 +51,11 @@ const YouTubePage = () => {
         setSearchResults(response.data.items);
     }
 
+    async function getRelatedVideos(){
+        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&relatedToVideoId=${videoId}&key=${KEY}`)
+        setRelatedVideos(response.data.items);
+        console.log(response.data.items);
+    }
     
     async function getAllComments(){
         let response = await axios.get(`http://127.0.0.1:8000/api/comments/${videoId}`);
@@ -80,6 +88,9 @@ const YouTubePage = () => {
                 <div> <VideoPlayer videoId={videoId} title={title} description={description}/> </div>
                 <div> <CommentForm postComment={postComment} /> </div>
                 <div> <CommentList allComments={allComments}  />  </div>
+            </div>
+            <div>
+                <RelatedVideos relatedVideos={relatedVideos} setVideoId={setVideoId} setTitle={setTitle} setDescription={setDescription} /> 
             </div>
         </div>
 
