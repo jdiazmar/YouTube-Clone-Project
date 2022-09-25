@@ -10,6 +10,8 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import CommentForm from '../../components/CommentForm/CommentForm';
 import CommentList from '../../components/CommentList/CommentList';
 import RelatedVideos from '../../components/RelatedVideos/RelatedVideos';
+//CSS Imports
+import './YouTubePage.css';
 
 
 
@@ -81,15 +83,15 @@ const YouTubePage = () => {
 
 
     return ( 
-        <div>
+        <div className='homepage-contain'>
             <h1>Welcome {user.user}!</h1>
             <div> <SearchBar getSearchResults={getSearchResults}/> </div>
-            <div>
-                <div> <VideoPlayer videoId={videoId} title={title} description={description}/> </div>
-                <div> <CommentForm postComment={postComment} /> </div>
+            <div className='home-flex-contain' >
+                <div className='home-video-player' > <VideoPlayer videoId={videoId} title={title} description={description}/> </div>
+                <div className='home-comment-form'> <CommentForm postComment={postComment} /> </div>
                 <div> <CommentList allComments={allComments}  />  </div>
             </div>
-            <div>
+            <div className='home-related' >
                 <RelatedVideos relatedVideos={relatedVideos} setVideoId={setVideoId} setTitle={setTitle} setDescription={setDescription} /> 
             </div>
         </div>
