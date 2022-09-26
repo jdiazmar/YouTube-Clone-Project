@@ -88,12 +88,12 @@ const YouTubePage = () => {
             <div> <SearchBar getSearchResults={getSearchResults}/> </div>
             <div className='home-flex-contain' >
                 <div className='home-video-player' > <VideoPlayer videoId={videoId} title={title} description={description}/> </div>
-                <div className='home-comment-form'> <CommentForm postComment={postComment} /> </div>
-                <div> <CommentList allComments={allComments}  />  </div>
-            </div>
-            <div className='home-related' >
+                <div className='home-related' >
                 <RelatedVideos relatedVideos={relatedVideos} setVideoId={setVideoId} setTitle={setTitle} setDescription={setDescription} /> 
             </div>
+            </div>
+            <div className='home-comment-form' > <CommentForm postComment={postComment} /> </div>
+            <div> <CommentList allComments={allComments}  />  </div>
         </div>
 
      );
