@@ -8,7 +8,7 @@ const [searchVideo, setSearchVideo] = useState('');
 const handleSubmit = (event) => {
     event.preventDefault();
     console.log(searchVideo);
-    props.getSearchVideo(searchVideo);
+    props.getSearchResults(searchVideo);
     setSearchVideo('');
 }
 
